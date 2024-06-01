@@ -22,6 +22,7 @@
                 <div>
                     <label for="plataforma">Plataforma</label>
                     <select name="plataforma" id="plataforma" v-model="plataforma">
+                        <option value="" selected disabled>PC | PlayStation | Xbox One</option>
                         <option value="pc">PC</option>
                         <option value="PlayStation">PlayStation</option>
                         <option value="xbox">Xbox One</option>
@@ -30,6 +31,7 @@
                 <div>
                     <label for="estado">Estado</label>
                     <select name="estado" id="estado" v-model="estado">
+                        <option value="" selected disabled>Pendiente | Jugar | Completado</option>
                         <option value="pendiente">Pendiente</option>
                         <option value="jugando">Jugando</option>
                         <option value="completado">Completado</option>
@@ -102,5 +104,4 @@
     </div>
     <script src="index.js"></script>
 </body>
-
 </html>
