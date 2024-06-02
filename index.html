@@ -18,6 +18,10 @@
                 <div>
                     <label for="nombreJuego">Nombre</label>
                     <input type="text" id="nombreJuego" v-model="nombreJuego">
+                     <p v-if="esNombreInvalido"> Debe ingresar el nombre del juego</p>
+
+                   
+                    
                 </div>
                 <div>
                     <label for="plataforma">Plataforma</label>
@@ -25,24 +29,34 @@
                         <option value="" selected disabled>PC | PlayStation | Xbox One</option>
                         <option value="pc">PC</option>
                         <option value="PlayStation">PlayStation</option>
-                        <option value="xbox">Xbox One</option>
+                        <option value="xbox">Xbox One</option>                       
                     </select>
+                    <p v-if="esPlataformaInvalida">Debe Seleccionar una plataforma</p>
                 </div>
                 <div>
                     <label for="estado">Estado</label>
-                    <select name="estado" id="estado" v-model="estado">
+                    
+                    <select name="estado" id="estado" v-model="estado">                       
                         <option value="" selected disabled>Pendiente | Jugar | Completado</option>
                         <option value="pendiente">Pendiente</option>
                         <option value="jugando">Jugando</option>
-                        <option value="completado">Completado</option>
+                        <option value="completado">Completado</option>                       
                     </select>
+                    <p v-if="esEstadoinvalido"> Debe seleccionar un estado</p>
+                   
                 </div>
                 <div>
                     <label for="puntaje">Puntaje</label>
                     <input type="number" id="puntaje" v-model="puntaje">
+                    <p v-if="esPuntajeInvalido ">El puntaje debe estar entre 1 y 10</p>
+                    
+                 
                 </div>
                 <div>
                     <button type="submit">Registrar Videojuego</button>
+                    
+                    
+                    
                 </div>
             </form>
         </div>
