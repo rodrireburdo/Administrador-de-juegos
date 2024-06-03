@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,113 +7,108 @@
     <link rel="stylesheet" href="estilos.css">
     <title>Administración de juegos</title>
 </head>
-
 <body>
     <div id="app">
-        <h1>Administración de videojuegos</h1>
-        <div>
-            <h2>Nuevo video juego</h2>
-            <form @submit.prevent="registrarJuego">
-                <div>
-                    <label for="nombreJuego">Nombre</label>
-                    <input type="text" id="nombreJuego" v-model="nombreJuego">
-                     <p v-if="esNombreInvalido"> Debe ingresar el nombre del juego</p>
-
-                   
-                    
-                </div>
-                <div>
-                    <label for="plataforma">Plataforma</label>
-                    <select name="plataforma" id="plataforma" v-model="plataforma">
-                        <option value="" selected disabled>PC | PlayStation | Xbox One</option>
-                        <option value="pc">PC</option>
-                        <option value="PlayStation">PlayStation</option>
-                        <option value="xbox">Xbox One</option>                       
-                    </select>
-                    <p v-if="esPlataformaInvalida">Debe Seleccionar una plataforma</p>
-                </div>
-                <div>
-                    <label for="estado">Estado</label>
-                    
-                    <select name="estado" id="estado" v-model="estado">                       
-                        <option value="" selected disabled>Pendiente | Jugar | Completado</option>
-                        <option value="pendiente">Pendiente</option>
-                        <option value="jugando">Jugando</option>
-                        <option value="completado">Completado</option>                       
-                    </select>
-                    <p v-if="esEstadoinvalido"> Debe seleccionar un estado</p>
-                   
-                </div>
-                <div>
-                    <label for="puntaje">Puntaje</label>
-                    <input type="number" id="puntaje" v-model="puntaje">
-                    <p v-if="esPuntajeInvalido ">El puntaje debe estar entre 1 y 10</p>
-                    
-                 
-                </div>
-                <div>
-                    <button type="submit">Registrar Videojuego</button>
-                    
-                    
-                    
-                </div>
-            </form>
-        </div>
-        <div>
-            <h2>Filtros</h2>
-            <div>
-                <label for="filtroTitulo">Nombre</label>
-                <input type="text" id="filtroTitulo" v-model="filtroTitulo">
+        <header>
+            <h1 class="titulo">Administración de videojuegos</h1>
+        </header>
+        <main>
+            <div class="contenedor-general">
+                <section>
+                    <h2 class="titulo-nuevoJuego">Añadir juego a la colección:</h2>
+                    <form @submit.prevent="registrarJuego" class="form-registrarJuego">
+                        <div class="form-registrarJuego">
+                            <label for="nombreJuego">Nombre: </label>
+                            <input type="text" id="nombreJuego" v-model="nombreJuego" class="input-nombre">
+                            <p v-if="esNombreInvalido" class="error div-error-nombre">Debe ingresar el nombre del juego</p>
+                        </div>
+                        <div class="form-registrarJuego">
+                            <label for="plataforma">Plataforma: </label>
+                            <select name="plataforma" id="plataforma" v-model="plataforma" class="select-plataforma">
+                                <option value="" selected disabled>PC | PlayStation | Xbox One</option>
+                                <option value="pc">PC</option>
+                                <option value="PlayStation">PlayStation</option>
+                                <option value="xbox">Xbox One</option>                       
+                            </select>
+                            <p v-if="esPlataformaInvalida" class="error">Debe Seleccionar una plataforma</p>
+                        </div>
+                        <div class="form-registrarJuego">
+                            <label for="estado">Estado: </label>
+                            <select name="estado" id="estado" v-model="estado" class="select-estado">                       
+                                <option value="" selected disabled>Pendiente | Jugar | Completado</option>
+                                <option value="pendiente">Pendiente</option>
+                                <option value="jugando">Jugando</option>
+                                <option value="completado">Completado</option>                       
+                            </select>
+                            <p v-if="esEstadoinvalido" class="error">Debe seleccionar un estado</p>
+                        </div>
+                        <div class="form-registrarJuego">
+                            <label for="puntaje">Puntaje: </label>
+                            <input type="number" id="puntaje" v-model="puntaje" class="input-puntaje">
+                            <p v-if="esPuntajeInvalido" class="error">El puntaje debe estar entre 1 y 10</p>
+                        </div>
+                        <div class="form-registrarJuego">
+                            <button type="submit" class="btn-RegistrarJuego">Registrar Videojuego</button>
+                        </div>
+                    </form>
+                </section>
+                <section>
+                    <h2>Filtros</h2>
+                    <div class="contenedor-filtros">
+                        <div>
+                            <label for="filtroTitulo">Nombre: </label>
+                            <input type="text" id="filtroTitulo" v-model="filtroTitulo" class="input-nombre">
+                        </div>
+                        <div>
+                            <label for="filtroPlataforma">Plataforma: </label>
+                            <select id="filtroPlataforma" v-model="filtroPlataforma" class="select-plataforma">
+                                <option value="">Todas</option>
+                                <option value="pc">PC</option>
+                                <option value="PlayStation">PlayStation</option>
+                                <option value="xbox">Xbox One</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="filtroEstado">Estado: </label>
+                            <select id="filtroEstado" v-model="filtroEstado" class="select-estado">
+                                <option value="">Todos</option>
+                                <option value="pendiente">Pendiente</option>
+                                <option value="jugando">Jugando</option>
+                                <option value="completado">Completado</option>
+                            </select>
+                        </div>
+                    </div>
+                    <h2>Juegos</h2>
+                    <table class="tabla">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Plataforma</th>
+                                <th>Estado</th>
+                                <th>Puntaje</th>
+                                <th>Más Información</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(videojuego, index) in juegosFiltrados" :key="index">
+                                <td>{{ videojuego.nombre }}</td>
+                                <td>{{ videojuego.plataforma }}</td>
+                                <td>{{ videojuego.estado }}</td>
+                                <td>{{ videojuego.puntaje }}</td>
+                                <td><button @click="mostrarMasInfo(videojuego)" class="btn-masInfo">Info</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div v-if="juegoSeleccionado" class="contenedor-infoJuego">
+                        <h2>Información del Juego</h2>
+                        <p><strong>Nombre:</strong> {{ juegoSeleccionado.nombre }}</p>
+                        <p><strong>Plataforma:</strong> {{ juegoSeleccionado.plataforma }}</p>
+                        <p><strong>Estado:</strong> {{ juegoSeleccionado.estado }}</p>
+                        <p><strong>Puntaje:</strong> {{ juegoSeleccionado.puntaje }}</p>
+                    </div>
+                </section>
             </div>
-            <div>
-                <label for="filtroPlataforma">Plataforma</label>
-                <select id="filtroPlataforma" v-model="filtroPlataforma">
-                    <option value="">Todas</option>
-                    <option value="pc">PC</option>
-                    <option value="PlayStation">PlayStation</option>
-                    <option value="xbox">Xbox One</option>
-                </select>
-            </div>
-            <div>
-                <label for="filtroEstado">Estado</label>
-                <select id="filtroEstado" v-model="filtroEstado">
-                    <option value="">Todos</option>
-                    <option value="pendiente">Pendiente</option>
-                    <option value="jugando">Jugando</option>
-                    <option value="completado">Completado</option>
-                </select>
-            </div>
-        </div>
-        <div>
-            <h2>Juegos</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Plataforma</th>
-                        <th>Estado</th>
-                        <th>Puntaje</th>
-                        <th>Más Información</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(videojuego, index) in juegosFiltrados" :key="index">
-                        <td>{{ videojuego.nombre }}</td>
-                        <td>{{ videojuego.plataforma }}</td>
-                        <td>{{ videojuego.estado }}</td>
-                        <td>{{ videojuego.puntaje }}</td>
-                        <td><button @click="mostrarMasInfo(videojuego)">Info</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div v-if="juegoSeleccionado">
-            <h2>Información del Juego</h2>
-            <p><strong>Nombre:</strong> {{ juegoSeleccionado.nombre }}</p>
-            <p><strong>Plataforma:</strong> {{ juegoSeleccionado.plataforma }}</p>
-            <p><strong>Estado:</strong> {{ juegoSeleccionado.estado }}</p>
-            <p><strong>Puntaje:</strong> {{ juegoSeleccionado.puntaje }}</p>
-        </div>
+        </main>
     </div>
     <script src="index.js"></script>
 </body>
